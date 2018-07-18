@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Vue Deneme</title>
+
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+	<div id="app">
+
+		<input type="text" v-model="query">
+		<button v-on:click="search()">Ara</button>
+		<div id="result" v-if="result">
+
+			{{ result.name }} 
+		</div>
+
+	</div>
+
+	<script>
+		var app = new Vue({
+  		el: '#app',
+  		data: {
+   		query: '',
+   		result: {
+   			name: null
+   		}
+ 		 },
+ 		 methods: {
+ 		 	search:() => {
+ 		 		fetch(`http://www.omdbapi.com/?t=${this.query}&apikey=d31efe4c) 
+ 		 	
+ 		 		.then(result => result.json())
+ 		 	}
+ 		 }
+   		
+		})
+
+	</script>
+
+</body>
+</html>
