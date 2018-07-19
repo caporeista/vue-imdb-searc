@@ -10,10 +10,10 @@
 	<div id="app">
 
 		<input type="text" v-model="query">
-		<button v-on:click="search()">Ara</button>
+		<button v-on:click="search()">Search</button>
 		<div id="result" v-if="result">
 
-			{{ result.name }} 
+			{{ result.Title }}
 		</div>
 
 	</div>
@@ -23,20 +23,22 @@
   		el: '#app',
   		data: {
    		query: '',
-   		result: {
-   			name: null
-   		}
+   		result: false
  		 },
  		 methods: {
- 		 	search:() => {
- 		 		fetch(`http://www.omdbapi.com/?t=${this.query}&apikey=d31efe4c`) 
+ 		 	search: function () {
+ 		 		fetch(`http://www.omdbapi.com/?t=${this.query}&apikey=d31efe4c&r=json`) 
  		 	
  		 		.then(result => result.json())
+ 		 		.then(result => {
+
+ 		 			this.$set = (this, 'result', result)
+ 		 	})
+
  		 	}
  		 }
    		
 		})
-
 	</script>
 
 </body>
